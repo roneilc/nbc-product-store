@@ -8,6 +8,12 @@ public class ProductsService : IProductsService
 {
     private List<Product>? _productsList;
     private static readonly HttpClient _httpClient = new();
+    private readonly IConfiguration _configuration;
+
+    public ProductsService(IConfiguration configuration)
+    {
+        _configuration = configuration;
+    }
 
     public async Task<List<Product>> GetProductsAsync()
     {   
@@ -18,7 +24,7 @@ public class ProductsService : IProductsService
 
         try
         {
-            var response = await _httpClient.GetAsync(AppConstants.DUMMY_JSON_PRODUCTS_URL);
+            var response = await _httpClient.GetAsync(_configuration[AppConstants.DUMMY_JSON_PRODUCTS_URL]);
 
             if (!response.IsSuccessStatusCode || response.Content == null)
             {
