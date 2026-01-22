@@ -1,0 +1,39 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": ".NET: Debug",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/nbc-product-store/bin/Debug/net10.0/nbc-product-store.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/nbc-product-store",
+            "stopAtEntry": false,
+            "console": "internalConsole"
+        },
+        {
+            "name": "Angular: Debug",
+            "type": "chrome",
+            "request": "attach",
+            "port": 9333,
+            "pathMapping": {
+                "/": "${workspaceFolder}/nbc-product-store/ClientApp/",
+                "/src/": "${workspaceFolder}/nbc-product-store/ClientApp/src/"
+            }
+        }
+    ],
+    "compounds": [
+        {
+            "name": "Launch and Debug (.NET + Angular)",
+            "configurations": [
+                ".NET: Debug",
+                "Angular: Debug"
+            ],
+            "stopAll": true
+        }
+    ]
+}
