@@ -51,6 +51,7 @@ public class ProductsService : IProductsService
         catch (Exception ex)
         {
             Console.WriteLine($"Exception: {ex.Message}");
+            return new List<Product>();
         }
     }
 }
