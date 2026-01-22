@@ -18,22 +18,25 @@
         {
             "name": "Angular: Debug",
             "type": "chrome",
-            "request": "attach",
-            "port": 9333,
-            "pathMapping": {
-                "/": "${workspaceFolder}/nbc-product-store/ClientApp/",
-                "/src/": "${workspaceFolder}/nbc-product-store/ClientApp/src/"
-            }
+            "request": "launch",
+            "preLaunchTask": "ng serve",
+            "url": "http://localhost:4200",
+            "cwd": "${workspaceFolder}/nbc-product-store/ClientApp",
+            "webRoot": "${workspaceFolder}/nbc-product-store/ClientApp/src",
+            "skipFiles": [
+                "<node_internals>/**"
+            ]
         }
     ],
     "compounds": [
         {
-            "name": "Launch and Debug (.NET + Angular)",
+            "name": "Full Stack: Debug (.NET + Angular)",
             "configurations": [
                 ".NET: Debug",
                 "Angular: Debug"
             ],
-            "stopAll": true
+            "stopAll": true,
+            "preLaunchTask": "build"
         }
     ]
 }
