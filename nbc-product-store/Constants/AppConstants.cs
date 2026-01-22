@@ -3,7 +3,7 @@
 public static class AppConstants
 {
     //Urls
-    public static readonly string DUMMY_JSON_PRODUCTS_URL = "https://dummyjson.com/products";
+    public static readonly string DUMMY_JSON_PRODUCTS_URL = "DUMMY_JSON_PRODUCTS_URL";
 
     //Controller Codes
     public static readonly string RESPONSE_STATUS_CODE_SUCCESS = "0";
