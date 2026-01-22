@@ -8,8 +8,8 @@
   </PropertyGroup>
 
   <Target Name="BuildAngular" BeforeTargets="Build">
-    <Exec Command="npm install" WorkingDirectory="../nbc-product-store-angular" />
-    <Exec Command="npm run build" WorkingDirectory="../nbc-product-store-angular" />
+    <Exec Command="npm install" WorkingDirectory="./ClientApp" />
+    <Exec Command="npm run build" WorkingDirectory="./ClientApp" />
   </Target>
 
 </Project>
