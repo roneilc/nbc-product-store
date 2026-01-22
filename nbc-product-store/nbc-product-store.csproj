@@ -7,6 +7,10 @@
     <RootNamespace>nbc_product_store</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+  </ItemGroup>
+
   <Target Name="BuildAngular" BeforeTargets="Build">
     <Exec Command="npm install" WorkingDirectory="./ClientApp" />
     <Exec Command="npm run build" WorkingDirectory="./ClientApp" />
