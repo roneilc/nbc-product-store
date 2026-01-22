@@ -26,7 +26,8 @@ public class ProductsController : Controller
             var serviceResponse = await _productsService.GetProductsAsync();
 
             if (serviceResponse != null && serviceResponse.Count > 0)
-            {
+            {   
+                //Successful fetch
                 res.StatusCode = AppConstants.RESPONSE_STATUS_CODE_SUCCESS;
                 res.StatusDescription = AppConstants.RESPONSE_STATUS_DESCRIPTION_SUCCESS;
                 res.Products = serviceResponse;
