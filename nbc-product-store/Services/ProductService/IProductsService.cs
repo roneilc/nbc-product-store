@@ -4,5 +4,5 @@ namespace nbc_product_store.Services;
 
 public interface IProductsService
 {
-    Task<ProductsAPIResponse> GetProductsAsync();
+    Task<List<Product>> GetProductsAsync();
 }

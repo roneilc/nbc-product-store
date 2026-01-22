@@ -25,26 +25,25 @@ public class ProductsController : Controller
         {
             var serviceResponse = await _productsService.GetProductsAsync();
 
-            if (serviceResponse != null)
+            if (serviceResponse != null && serviceResponse.Count > 0)
             {
-                if (serviceResponse.Error != null)
-                {
-                    res.StatusCode = AppConstants.RESPONSE_STATUS_CODE_FAIL;
-                    res.StatusDescription = AppConstants.RESPONSE_STATUS_DESCRIPTION_FAIL;
-                }
-                else
-                {
-                    res.StatusCode = AppConstants.RESPONSE_STATUS_CODE_SUCCESS;
-                    res.StatusDescription = AppConstants.RESPONSE_STATUS_DESCRIPTION_SUCCESS;      
-                }
-
+                res.StatusCode = AppConstants.RESPONSE_STATUS_CODE_SUCCESS;
+                res.StatusDescription = AppConstants.RESPONSE_STATUS_DESCRIPTION_SUCCESS;
+                res.Products = serviceResponse;
             }
-
-            res.Products = serviceResponse.Products;
+            else
+            {
+                res.StatusCode = AppConstants.RESPONSE_STATUS_CODE_FAIL;
+                res.StatusDescription = AppConstants.RESPONSE_STATUS_DESCRIPTION_FAIL;
+                res.Products = new List<Product>();
+            }
         }
         catch (Exception ex)
         {
             Console.WriteLine($"Exception: {ex.Message}");
+            res.StatusCode = AppConstants.RESPONSE_STATUS_CODE_FAIL;
+            res.StatusDescription = AppConstants.RESPONSE_STATUS_DESCRIPTION_FAIL;
+            res.Products = new List<Product>();
         }
 
         return Json(res);

@@ -5,9 +5,9 @@ namespace nbc_product_store.Services;
 
 public class ProductsServiceHelper
 {
-    public static ProductsAPIResponse DeserializeDummyJsonProducts(string jsonContent)
+    public static List<Product> DeserializeDummyJsonProducts(string jsonContent)
     {
-        ProductsAPIResponse response = null;
+        List<Product> productsList = null;
         if (!String.IsNullOrEmpty(jsonContent))
         {
             JsonSerializerSettings settings = new JsonSerializerSettings();
@@ -17,9 +17,10 @@ public class ProductsServiceHelper
             settings.ConstructorHandling = ConstructorHandling.AllowNonPublicDefaultConstructor;
             settings.DefaultValueHandling = DefaultValueHandling.Ignore;
 
-            response = JsonConvert.DeserializeObject<ProductsAPIResponse>(jsonContent, settings);
+            var response = JsonConvert.DeserializeObject<ProductsResponse>(jsonContent, settings);
+            productsList = response?.Products;
         }
 
-        return response;
+        return productsList ?? new List<Product>();
     }
 }
