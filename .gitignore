@@ -42,4 +42,8 @@ testem.log
 Thumbs.db
 
 #Dotnet Project Files
-nbc-product-store/obj/Debug/**
+nbc-product-store/obj/Debug/**/*
+nbc-product-store/bin/Debug/*
+
+#node_modules
+nbc-product-store/ClientApp/node_modules/**/*
