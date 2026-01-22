@@ -7,4 +7,9 @@
     <RootNamespace>nbc_product_store</RootNamespace>
   </PropertyGroup>
 
+  <Target Name="BuildAngular" BeforeTargets="Build">
+    <Exec Command="npm install" WorkingDirectory="../nbc-product-store-angular" />
+    <Exec Command="npm run build" WorkingDirectory="../nbc-product-store-angular" />
+  </Target>
+
 </Project>
