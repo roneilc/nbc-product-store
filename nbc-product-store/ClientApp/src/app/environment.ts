@@ -3,5 +3,5 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://localhost:7000' // Update to match your .NET project port
+  apiUrl: 'https://localhost:7050' 
 };
