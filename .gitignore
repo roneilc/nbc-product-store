@@ -44,6 +44,13 @@ Thumbs.db
 #Dotnet Project Files
 nbc-product-store/obj/Debug/**/*
 nbc-product-store/bin/Debug/*
+nbc-product-store/obj/*
+nbc-product-store/obj/project.nuget.cache
 
-#node_modules
+
+#Angular ClientApp Files
 nbc-product-store/ClientApp/node_modules/**/*
+nbc-product-store/ClientApp/dist/**/*
+
+#wwwroot
+nbc-product-store/wwwroot/**/*
