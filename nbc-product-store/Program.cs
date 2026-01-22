@@ -1,7 +1,13 @@
+using nbc_product_store.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllers();
+
+//Services Dependency Injection
+builder.Services.AddSingleton<IProductsService, ProductsService>();
+builder.Services.AddSingleton<IProductsService, ProductsService>();
 
 var app = builder.Build();
 

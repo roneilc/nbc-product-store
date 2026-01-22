@@ -1,51 +1,28 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using nbc_product_store.Models;
+using nbc_product_store.Services;
 
 namespace nbc_product_store.Controllers;
 
+[Route("/api/[controller]/[action]")]
+[ApiController]
 public class ProductsController : Controller
 {
-    private static List<Product>? _cachedProducts;
-    private static readonly HttpClient _httpClient = new();
+    private readonly IProductsService _productsService;
+
+    public ProductsController(IProductsService productsService)
+    {
+        _productsService = productsService;
+    }
 
     [HttpGet]
-    [Route("api/[controller]")]
-    public async Task<ActionResult<List<Product>>> Get()
+    public async Task<ActionResult<List<Product>>> GetProducts()
     {
         try
         {
-            var response = await _httpClient.GetAsync("https://dummyjson.com/products");
-            
-            if (!response.IsSuccessStatusCode)
-            {
-                return StatusCode(500, "Failed to fetch products from external service");
-            }
-
-            var jsonContent = await response.Content.ReadAsStringAsync();
-            
-            using var doc = System.Text.Json.JsonDocument.Parse(jsonContent);
-            var products = new List<Product>();
-
-            if (doc.RootElement.TryGetProperty("products", out var productsArray))
-            {
-                foreach (var item in productsArray.EnumerateArray())
-                {
-                    var product = new Product
-                    {
-                        Id = item.GetProperty("id").GetInt32(),
-                        Title = item.GetProperty("title").GetString() ?? string.Empty,
-                        Description = item.GetProperty("description").GetString() ?? string.Empty,
-                        Price = item.GetProperty("price").GetDecimal(),
-                        Thumbnail = item.GetProperty("thumbnail").GetString() ?? string.Empty
-                    };
-                    products.Add(product);
-                }
-            }
-
-            _cachedProducts = products;
-            
-            return Ok(_cachedProducts);
+            var products = await _productsService.GetProductsAsync();
+            return Ok(products);
         }
         catch (Exception ex)
         {
