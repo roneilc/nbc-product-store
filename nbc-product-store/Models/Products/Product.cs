@@ -1,4 +1,4 @@
-namespace nbc_product_store.Models;
+namespace nbc_product_store.Models.Products;
 
 public class Product
 {
