@@ -7,7 +7,6 @@ builder.Services.AddControllers();
 
 //Services Dependency Injection
 builder.Services.AddSingleton<IProductsService, ProductsService>();
-builder.Services.AddSingleton<IProductsService, ProductsService>();
 
 var app = builder.Build();
 
