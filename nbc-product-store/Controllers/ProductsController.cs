@@ -2,6 +2,7 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using nbc_product_store.Models;
 using nbc_product_store.Services;
+using nbc_product_store.Constants;
 
 namespace nbc_product_store.Controllers;
 
@@ -17,16 +18,35 @@ public class ProductsController : Controller
     }
 
     [HttpGet]
-    public async Task<ActionResult<List<Product>>> GetProducts()
+    public async Task<JsonResult> RetrieveProductsList()
     {
+        RetrieveProductsListResponse res = new RetrieveProductsListResponse();
         try
         {
-            var products = await _productsService.GetProductsAsync();
-            return Ok(products);
+            var serviceResponse = await _productsService.GetProductsAsync();
+
+            if (serviceResponse != null)
+            {
+                if (serviceResponse.Error != null)
+                {
+                    res.StatusCode = AppConstants.RESPONSE_STATUS_CODE_FAIL;
+                    res.StatusDescription = AppConstants.RESPONSE_STATUS_DESCRIPTION_FAIL;
+                }
+                else
+                {
+                    res.StatusCode = AppConstants.RESPONSE_STATUS_CODE_SUCCESS;
+                    res.StatusDescription = AppConstants.RESPONSE_STATUS_DESCRIPTION_SUCCESS;      
+                }
+
+            }
+
+            res.Products = serviceResponse.Products;
         }
         catch (Exception ex)
         {
-            return StatusCode(500, $"An error occurred while fetching products: {ex.Message}");
+            Console.WriteLine($"Exception: {ex.Message}");
         }
+
+        return Json(res);
     }
 }
