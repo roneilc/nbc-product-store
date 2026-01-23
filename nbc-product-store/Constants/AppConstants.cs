@@ -14,6 +14,8 @@ public static class AppConstants
     //Controller Codes
     public static readonly string RESPONSE_STATUS_CODE_SUCCESS = "0";
     public static readonly string RESPONSE_STATUS_DESCRIPTION_SUCCESS = "success";
+    public static readonly string EMPTY_CART_STATUS_CODE = "0";
+    public static readonly string EMPTY_CART_STATUS_DESCRIPTION = "Empty Cart";
     public static readonly string RESPONSE_STATUS_CODE_FAIL = "1";
     public static readonly string RESPONSE_STATUS_DESCRIPTION_FAIL = "fail";
     public static readonly string INVALID_REQUEST_STATUS_CODE = "1";

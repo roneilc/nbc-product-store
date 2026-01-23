@@ -8,7 +8,7 @@ namespace nbc_product_store.Services;
 
 public class CartService : ICartService
 {
-    private static readonly List<CartItem> _cartItems = new();
+    private static readonly List<CartItem> _cartItemsList = new();
     private readonly IProductsService _productsService;
 
     public CartService(IProductsService productsService)
@@ -27,10 +27,11 @@ public class CartService : ICartService
             return;
         }
 
-        var existingItem = _cartItems.FirstOrDefault(c => c.Id == request.ProductId);
+        var existingItem = _cartItemsList.FirstOrDefault(c => c.Id == request.ProductId);
         if (existingItem != null)
         {
-            existingItem.Quantity += request.Quantity;
+                existingItem.Quantity += request.Quantity;
+                existingItem.Subtotal += product.Price * request.Quantity;
         }
         else
         {
@@ -44,26 +45,28 @@ public class CartService : ICartService
                 Quantity = request.Quantity
             };
 
-            _cartItems.Add(newItem);
+                newItem.Subtotal = product.Price * request.Quantity;
+
+            _cartItemsList.Add(newItem);
         }
     }
 
     public List<CartItem> GetCartItems()
     {
-        return _cartItems.ToList();
+        return _cartItemsList.ToList();
     }
 
     public void RemoveItem(int productId)
     {
-        var item = _cartItems.FirstOrDefault(c => c.Id == productId);
+        var item = _cartItemsList.FirstOrDefault(c => c.Id == productId);
         if (item != null)
         {
-            _cartItems.Remove(item);
+            _cartItemsList.Remove(item);
         }
     }
 
     public void ClearCart()
     {
-        _cartItems.Clear();
+        _cartItemsList.Clear();
     }
 }

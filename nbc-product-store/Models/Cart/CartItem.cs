@@ -8,4 +8,5 @@ public class CartItem
     public decimal Price { get; set; }
     public string Thumbnail { get; set; }
     public int Quantity { get; set; }
+    public decimal Subtotal { get; set; }
 }
