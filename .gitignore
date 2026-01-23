@@ -46,6 +46,7 @@ nbc-product-store/obj/Debug/**/*
 nbc-product-store/bin/Debug/*
 nbc-product-store/obj/*
 nbc-product-store/obj/project.nuget.cache
+nbc-product-store/obj/**/*
 
 
 #Angular ClientApp Files
