@@ -24,6 +24,9 @@ npm install
 ng serve --configuration development
 ```
 
+
+Once Angular and .NET backends are running, navigate to https://localhost:7050.
+
 ## API Base Url
 
 API base URL is in environment file: `ClientApp/src/app/environment.ts`.
