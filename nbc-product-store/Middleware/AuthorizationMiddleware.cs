@@ -17,15 +17,25 @@ namespace nbc_product_store.Middleware
 
         public async Task InvokeAsync(HttpContext context)
         {
-            if (!context.Request.Headers.ContainsKey(AppConstants.AUTHORIZATION_HEADER) || string.IsNullOrWhiteSpace(context.Request.Headers[AppConstants.AUTHORIZATION_HEADER].ToString()))
+            if (context.Request.Path.HasValue && context.Request.Path.Value.StartsWith("/api"))
             {
-                var serviceError = new ServiceError(AppConstants.AUTHORIZATION_ERROR_CODE, AppConstants.AUTHORIZATION_ERROR_DESCRIPTION);
-                var serviceErrorJson = JsonSerializer.Serialize(serviceError);
+                //Allow OPTIONS
+                if (string.Equals(context.Request.Method, HttpMethods.Options, System.StringComparison.OrdinalIgnoreCase))
+                {
+                    await _next(context);
+                    return;
+                }
 
-                context.Response.StatusCode = StatusCodes.Status401Unauthorized;
-                context.Response.ContentType = "application/json";
-                await context.Response.WriteAsync(serviceErrorJson);
-                return;
+                if (!context.Request.Headers.ContainsKey(AppConstants.AUTHORIZATION_HEADER) || string.IsNullOrWhiteSpace(context.Request.Headers[AppConstants.AUTHORIZATION_HEADER].ToString()))
+                {
+                    var serviceError = new ServiceError(AppConstants.AUTHORIZATION_ERROR_CODE, AppConstants.AUTHORIZATION_ERROR_DESCRIPTION);
+                    var serviceErrorJson = JsonSerializer.Serialize(serviceError);
+
+                    context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+                    context.Response.ContentType = "application/json";
+                    await context.Response.WriteAsync(serviceErrorJson);
+                    return;
+                }
             }
 
             await _next(context);
