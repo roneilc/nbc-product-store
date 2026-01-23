@@ -32,13 +32,11 @@
             "webRoot": "${workspaceFolder}/nbc-product-store/ClientApp"
         },
         {
-            "type": "node",
+            "type": "java",
+            "name": "Java Launch",
             "request": "launch",
-            "name": "Node Angular Build",
-            "program": "${workspaceFolder}/nbc-product-store/ClientApp",
-            "runtimeExecutable": "npm",
-            "runtimeArgs": ["run", "build"],
-            "console": "integratedTerminal"
+            "mainClass": "${file}",
+            "projectName": "java-product-store"
         }
     ],
     "compounds": [
