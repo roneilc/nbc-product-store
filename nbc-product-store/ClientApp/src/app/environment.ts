@@ -3,7 +3,6 @@
 
 export const environment = {
   production: false,
-  // Known backend endpoints
   backends: {
     dotnet: 'https://localhost:7050',
     java: 'http://localhost:8080'

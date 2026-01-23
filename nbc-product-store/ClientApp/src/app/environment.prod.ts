@@ -5,5 +5,5 @@ export const environment = {
     java: 'https://java-api.yourdomain.com'
   },
   defaultBackend: 'dotnet',
-  apiUrl: 'https://api.yourdomain.com' // Update for production
+  apiUrl: 'https://api.yourdomain.com'
 };
