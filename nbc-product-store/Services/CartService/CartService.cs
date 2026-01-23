@@ -2,6 +2,7 @@ using nbc_product_store.Constants;
 using nbc_product_store.Models;
 using nbc_product_store.Models.Cart;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Mvc;
 
 namespace nbc_product_store.Services;
 
@@ -15,20 +16,21 @@ public class CartService : ICartService
         _productsService = productsService;
     }
 
-    public async Task AddItemToCart(int productId, int quantity)
+    public async Task AddItem([FromBody] CartRequest request)
     {
-        var products = await _productsService.GetProductsAsync();
-        var product = products.FirstOrDefault(p => p.Id == productId);
+        List<Product> products = await _productsService.GetProductsAsync();
+
+        var product = products.FirstOrDefault(p => p.Id == request.ProductId);
         if (product == null)
         {
             // Product not found
             return;
         }
 
-        var existingItem = _cartItems.FirstOrDefault(c => c.Id == productId);
+        var existingItem = _cartItems.FirstOrDefault(c => c.Id == request.ProductId);
         if (existingItem != null)
         {
-            existingItem.Quantity += quantity;
+            existingItem.Quantity += request.Quantity;
         }
         else
         {
@@ -39,8 +41,9 @@ public class CartService : ICartService
                 Description = product.Description,
                 Price = product.Price,
                 Thumbnail = product.Thumbnail,
-                Quantity = quantity
+                Quantity = request.Quantity
             };
+
             _cartItems.Add(newItem);
         }
     }
@@ -50,7 +53,7 @@ public class CartService : ICartService
         return _cartItems.ToList();
     }
 
-    public void RemoveItemFromCart(int productId)
+    public void RemoveItem(int productId)
     {
         var item = _cartItems.FirstOrDefault(c => c.Id == productId);
         if (item != null)

@@ -5,8 +5,8 @@ namespace nbc_product_store.Services;
 
 public interface ICartService
 {
-    Task AddItemToCart(int productId, int quantity);
+    Task AddItem (CartRequest request);
     List<CartItem> GetCartItems();
-    void RemoveItemFromCart(int productId);
+    void RemoveItem(int productId);
     void ClearCart();
 }
