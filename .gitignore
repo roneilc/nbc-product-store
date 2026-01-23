@@ -56,3 +56,6 @@ nbc-product-store/ClientApp/.angular/cache/**/*
 
 #wwwroot
 nbc-product-store/wwwroot/**/*
+
+#Java Target Files
+java-product-store/target/**/*
