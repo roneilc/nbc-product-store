@@ -6,6 +6,18 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllers();
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: "DevClient",
+        policy =>
+        {
+            policy.WithOrigins("http://localhost:4200")
+                  .AllowAnyHeader()
+                  .AllowAnyMethod()
+                  .AllowCredentials();
+        });
+});
+
 //Services Dependency Injection
 builder.Services.AddSingleton<IProductsService, ProductsService>();
 builder.Services.AddSingleton<ICartService, CartService>();
@@ -37,6 +49,8 @@ app.UseStaticFiles(new StaticFileOptions
 app.UseRouting();
 
 app.UseMiddleware<AuthorizationMiddleware>();
+
+app.UseCors("DevClient");
 
 app.UseAuthorization();
 
