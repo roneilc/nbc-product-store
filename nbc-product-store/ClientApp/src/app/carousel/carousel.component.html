@@ -1,0 +1,25 @@
+<div class="carousel">
+  <div class="carousel-viewport" (pointerdown)="onDragStart($event)" (pointermove)="onDragMove($event)" (pointerup)="onDragEnd($event)" (pointerleave)="onDragEnd($event)" (pointercancel)="onDragEnd($event)">
+    <div class="carousel-track">
+      <div *ngFor="let product of visibleProducts()" class="carousel-card" [style.flex]="'0 0 ' + (100 / visibleCount()) + '%'">
+        <img [src]="product.thumbnail" [alt]="product.title" class="product-image" />
+        <div class="product-info">
+          <h3 class="product-title">{{ product.title }}</h3>
+          <p class="product-description">{{ product.description }}</p>
+          <p class="product-price">${{ product.price }}</p>
+          <button class="add-to-cart" (click)="onAdd(product)">Buy</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="carousel-controls">
+    <button class="carousel-btn left" (click)="prev()" aria-label="Previous" [disabled]="(products?.length || 0) === 0">‹</button>
+
+    <div class="carousel-dots" *ngIf="(products?.length || 0) > visibleCount()">
+      <button *ngFor="let p of products; let i = index" class="dot" [class.active]="i === currentIndex()" (click)="selectIndex(i)" aria-label="Select item {{i + 1}}"></button>
+    </div>
+
+    <button class="carousel-btn right" (click)="next()" aria-label="Next" [disabled]="(products?.length || 0) === 0">›</button>
+  </div>
+</div>
