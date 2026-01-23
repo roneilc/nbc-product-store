@@ -3,8 +3,10 @@
 public static class AppConstants
 {
 
-    //Header Keys
+    //Authorization
     public static readonly string AUTHORIZATION_HEADER = "Authorization";
+    public static readonly string AUTHORIZATION_ERROR_CODE = "Authorization error";
+    public static readonly string AUTHORIZATION_ERROR_DESCRIPTION = "Invalid authentication";
 
     //Urls
     public static readonly string DUMMY_JSON_PRODUCTS_URL = "DUMMY_JSON_PRODUCTS_URL";
