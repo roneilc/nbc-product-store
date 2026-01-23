@@ -14,12 +14,12 @@
   </div>
 
   <div class="carousel-controls">
-    <button class="carousel-btn left" (click)="prev()" aria-label="Previous" [disabled]="(products?.length || 0) === 0">‹</button>
+    <button class="carousel-btn left" (click)="prev()" aria-label="Previous" [disabled]="(products.length || 0) === 0">‹</button>
 
-    <div class="carousel-dots" *ngIf="(products?.length || 0) > visibleCount()">
+    <div class="carousel-dots" *ngIf="(products.length || 0) > visibleCount()">
       <button *ngFor="let p of products; let i = index" class="dot" [class.active]="i === currentIndex()" (click)="selectIndex(i)" aria-label="Select item {{i + 1}}"></button>
     </div>
 
-    <button class="carousel-btn right" (click)="next()" aria-label="Next" [disabled]="(products?.length || 0) === 0">›</button>
+    <button class="carousel-btn right" (click)="next()" aria-label="Next" [disabled]="(products.length || 0) === 0">›</button>
   </div>
 </div>

@@ -1,0 +1,11 @@
+<main class="store-main">
+  <div *ngIf="loading()" class="loading">
+    Loading products...
+  </div>
+
+  <div *ngIf="error()" class="error">
+    {{ error() }}
+  </div>
+
+  <app-carousel *ngIf="!loading() && !error()" [products]="products()" (addToCart)="addToCart($event)"></app-carousel>
+</main>

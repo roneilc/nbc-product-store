@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy, Input, Output, EventEmitter, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Product } from '../models/product.model';
+import { Product } from '../../models/product.model';
 
 @Component({
   selector: 'app-carousel',
@@ -50,7 +50,7 @@ export class CarouselComponent implements OnInit, OnDestroy {
     const w = window.innerWidth;
     const count = w >= 1100 ? 3 : (w >= 760 ? 2 : 1);
     this.visibleCount.set(count);
-    const n = this.products?.length || 0;
+    const n = this.products.length || 0;
     if (n > 0) this.currentIndex.set(((this.currentIndex() % n) + n) % n);
     else this.currentIndex.set(0);
   }
@@ -69,7 +69,7 @@ export class CarouselComponent implements OnInit, OnDestroy {
     if (!this._dragActive) return;
     const dx = ev.clientX - this._dragStartX;
     const viewport = ev.currentTarget as HTMLElement;
-    const track = viewport?.querySelector('.carousel-track') as HTMLElement | null;
+    const track = viewport.querySelector('.carousel-track') as HTMLElement | null;
     if (track) {
       track.style.transition = 'none';
       track.style.transform = `translateX(${dx}px)`;
@@ -87,7 +87,7 @@ export class CarouselComponent implements OnInit, OnDestroy {
     if (!this._dragActive) return;
     this._dragActive = false;
     const viewport = ev.currentTarget as HTMLElement;
-    const track = viewport?.querySelector('.carousel-track') as HTMLElement | null;
+    const track = viewport.querySelector('.carousel-track') as HTMLElement | null;
     if (track) {
       track.style.transition = '';
       track.style.transform = '';
@@ -100,20 +100,20 @@ export class CarouselComponent implements OnInit, OnDestroy {
   }
 
   next(step = 1) {
-    const n = this.products?.length || 0;
+    const n = this.products.length || 0;
     if (n === 0) return;
     this.currentIndex.set((this.currentIndex() + step) % n);
   }
 
   prev(step = 1) {
-    const n = this.products?.length || 0;
+    const n = this.products.length || 0;
     if (n === 0) return;
     const idx = (this.currentIndex() - step) % n;
     this.currentIndex.set((idx + n) % n);
   }
 
   selectIndex(absIndex: number) {
-    const n = this.products?.length || 0;
+    const n = this.products.length || 0;
     if (n === 0) return;
     this.currentIndex.set(((absIndex % n) + n) % n);
   }
