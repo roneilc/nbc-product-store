@@ -24,4 +24,17 @@ npm install
 ng serve --configuration development
 ```
 
+## API Base Url
+
+API base URL is in environment file: `ClientApp/src/app/environment.ts`.
+
+Edit file to point apiUrl to a url (configured to be https://localhost:7050 in this project):
+
+```ts
+export const environment = {
+	production: false,
+	apiUrl: 'https://localhost:7050'
+};
+```
+
 ---
