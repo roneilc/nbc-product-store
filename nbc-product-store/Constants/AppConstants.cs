@@ -3,6 +3,9 @@
 public static class AppConstants
 {
 
+    //Base URI
+    public const string BASE_URI = "net";
+
     //Authorization
     public static readonly string AUTHORIZATION_HEADER = "Authorization";
     public static readonly string AUTHORIZATION_ERROR_CODE = "Authorization error";

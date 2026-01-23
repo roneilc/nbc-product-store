@@ -6,7 +6,7 @@ using nbc_product_store.Constants;
 
 namespace nbc_product_store.Controllers;
 
-[Route("/api/[controller]/[action]")]
+[Route(AppConstants.BASE_URI + "/api/[controller]/[action]")]
 [ApiController]
 public class ProductsController : Controller
 {
