@@ -3,5 +3,11 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://localhost:7050' 
+  // Known backend endpoints
+  backends: {
+    dotnet: 'https://localhost:7050',
+    java: 'http://localhost:8080'
+  },
+  defaultBackend: 'dotnet',
+  apiUrl: 'https://localhost:7050'
 };

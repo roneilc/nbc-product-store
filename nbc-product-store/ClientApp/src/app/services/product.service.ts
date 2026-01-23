@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../environment';
+import { getApiUrl } from '../backend-config';
 import { RetrieveProductsListResponse } from '../models/product.model';
 
 @Injectable({
@@ -10,7 +11,7 @@ import { RetrieveProductsListResponse } from '../models/product.model';
 export class ProductService {
     readonly RETRIEVE_PRODUCT_LIST = `/api/Products/RetrieveProductsList`;
 
-  private apiUrl = environment.apiUrl;
+  private apiUrl = getApiUrl();
 
   constructor(private http: HttpClient) { }
 

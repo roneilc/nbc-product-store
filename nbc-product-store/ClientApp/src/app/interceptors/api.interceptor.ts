@@ -3,6 +3,7 @@ import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpErrorResponse
 import { Observable, throwError, TimeoutError } from 'rxjs';
 import { catchError, timeout } from 'rxjs/operators';
 import { environment } from '../environment';
+import { getApiUrl } from '../backend-config';
 
 interface ApiError {
     status: number | null;
@@ -15,7 +16,7 @@ export class ApiInterceptor implements HttpInterceptor {
     apiDomainUrl: string;
 
     constructor() {
-        this.apiDomainUrl = environment.apiUrl;
+        this.apiDomainUrl = getApiUrl();
     }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
