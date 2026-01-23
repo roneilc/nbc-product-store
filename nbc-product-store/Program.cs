@@ -59,7 +59,6 @@ app.MapControllers();
 
 app.Use(async (context, next) =>
 {
-    Console.WriteLine($"Fallback triggered for: {context.Request.Path}");
     await next();
 });
 app.MapFallbackToFile("browser/index.html");
