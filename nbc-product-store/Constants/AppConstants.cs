@@ -16,6 +16,8 @@ public static class AppConstants
     public static readonly string RESPONSE_STATUS_DESCRIPTION_SUCCESS = "success";
     public static readonly string RESPONSE_STATUS_CODE_FAIL = "1";
     public static readonly string RESPONSE_STATUS_DESCRIPTION_FAIL = "fail";
+    public static readonly string INVALID_REQUEST_STATUS_CODE = "1";
+    public static readonly string INVALID_REQUEST_STATUS_DESCRIPTION = "Invalid request";
 
 
     //Backend API Generic

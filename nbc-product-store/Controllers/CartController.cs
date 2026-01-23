@@ -1,9 +1,10 @@
 using System.Diagnostics;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using nbc_product_store.Models;
 using nbc_product_store.Services;
-using nbc_product_store.Constants;
 using nbc_product_store.Models.Cart;
+using nbc_product_store.Models.Error;
+using nbc_product_store.Utilities;
 
 namespace nbc_product_store.Controllers;
 
@@ -19,22 +20,27 @@ public class CartController : Controller
     }
 
     [HttpPost]
-    public async Task<IActionResult> AddItem([FromBody] CartRequest request)
+    public async Task<JsonResult> AddItem([FromBody] CartRequest request)
     {
-        if (request == null || request.ProductId <= 0 || request.Quantity <= 0)
+        ServiceError se = ValidationUtility.ValidateCartRequest(request);
+
+        if (se != null)
         {
-            return BadRequest("Invalid request");
+            //Invalid request
+            Response.StatusCode = StatusCodes.Status400BadRequest;
+            return Json(se);
         }
 
-        await _cartService.AddItemToCart(request.ProductId, request.Quantity);
-        return Ok("Item added to cart");
+        await _cartService.AddItem(request);
+
+        return Json(new { message = "Item added to cart" });
     }
 
     [HttpGet]
     public IActionResult GetCart()
     {
-        var items = _cartService.GetCartItems();
-        return Ok(items);
+        var cartItems = _cartService.GetCartItems();
+        return Ok(cartItems);
     }
 
 }
