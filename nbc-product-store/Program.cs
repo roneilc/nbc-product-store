@@ -1,4 +1,5 @@
 using nbc_product_store.Services;
+using nbc_product_store.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -34,6 +35,9 @@ app.UseStaticFiles(new StaticFileOptions
 });
 
 app.UseRouting();
+
+app.UseMiddleware<AuthorizationMiddleware>();
+
 app.UseAuthorization();
 
 // Map API controllers

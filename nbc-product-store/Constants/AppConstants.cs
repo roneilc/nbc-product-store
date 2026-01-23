@@ -2,6 +2,10 @@
 
 public static class AppConstants
 {
+
+    //Header Keys
+    public static readonly string AUTHORIZATION_HEADER = "Authorization";
+
     //Urls
     public static readonly string DUMMY_JSON_PRODUCTS_URL = "DUMMY_JSON_PRODUCTS_URL";
 
