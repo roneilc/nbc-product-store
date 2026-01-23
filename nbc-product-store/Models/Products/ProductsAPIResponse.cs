@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Mc4b.Models.Error;
+using nbc_product_store.Models.Error;
 
 namespace nbc_product_store.Models;
 

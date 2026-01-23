@@ -1,4 +1,4 @@
-﻿namespace Mc4b.Models.Error
+﻿namespace nbc_product_store.Models.Error
 {
     public class ServiceError
     {

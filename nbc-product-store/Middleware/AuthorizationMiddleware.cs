@@ -2,7 +2,7 @@ using System.Threading.Tasks;
 using System.Text.Json;
 using Microsoft.AspNetCore.Http;
 using nbc_product_store.Constants;
-using Mc4b.Models.Error;
+using nbc_product_store.Models.Error;
 
 namespace nbc_product_store.Middleware
 {
