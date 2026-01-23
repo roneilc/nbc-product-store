@@ -1,4 +1,4 @@
-package com.example.productstore;
+package com.nbc.productstore;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
