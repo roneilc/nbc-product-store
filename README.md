@@ -66,3 +66,12 @@ Flow:
 3. A Controller receives the request, uses Services to handle logic and data, then returns JSON.
 
 ---
+
+## State Management
+
+For state management, this app uses Angular Signals with Observables being used for the http api calls to the backend. 
+
+A 3rd party state management library seemed too excessive for a small app.
+
+
+---
