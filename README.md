@@ -1,5 +1,13 @@
 # NBC Product Store
 
+## Directory structure
+
+- Angular client app: nbc-product-store/ClientApp
+- Java app: java-product-store
+- .NET app: nbc-product-store
+
+---
+
 To run this project in VS Code,
 
 1. Open the Run and Debug view
