@@ -52,6 +52,7 @@ nbc-product-store/obj/**/*
 #Angular ClientApp Files
 nbc-product-store/ClientApp/node_modules/**/*
 nbc-product-store/ClientApp/dist/**/*
+nbc-product-store/ClientApp/.angular/cache/**/*
 
 #wwwroot
 nbc-product-store/wwwroot/**/*
