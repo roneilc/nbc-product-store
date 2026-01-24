@@ -1,15 +1,15 @@
 package com.nbc.productstore.services.cartservice;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
 import com.nbc.productstore.models.cart.CartItem;
 import com.nbc.productstore.models.cart.CartRequest;
 import com.nbc.productstore.models.product.Product;
 import com.nbc.productstore.services.productsservice.ProductsService;
-
-import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 @Service
 public class CartServiceImpl implements CartService {
@@ -62,6 +62,13 @@ public class CartServiceImpl implements CartService {
     public List<CartItem> getCartItems() {
         synchronized (items) {
             return new ArrayList<>(items);
+        }
+    }
+
+    @Override
+    public void clearCart() {
+        synchronized (items) {
+            items.clear();
         }
     }
 }

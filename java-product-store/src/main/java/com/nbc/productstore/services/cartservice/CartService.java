@@ -8,4 +8,5 @@ import com.nbc.productstore.models.cart.CartRequest;
 public interface CartService {
     void addItem(CartRequest request);
     List<CartItem> getCartItems();
+    void clearCart();
 }
