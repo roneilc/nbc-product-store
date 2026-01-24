@@ -15,7 +15,7 @@ To run this project in VS Code,
 
 ![Run Configuration](images/run.png)
 
-3. Click the green arrow to start. This launch configuration will launch both angular and .NET backend
+3. Click the green arrow to start. This launch configuration will launch both angular, Java and .NET backend
 
 ## Command Line
 
@@ -26,6 +26,15 @@ cd nbc-product-store/nbc-product-store
 dotnet build
 dotnet run nbc-product-store.csproj
 ```
+
+Java backend
+
+```bash
+cd nbc-product-store/java-nbc-product
+mvn clean install
+mvn spring-boot:run
+```
+
 
 Angular Frontend
 
