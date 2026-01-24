@@ -27,8 +27,8 @@ public class CartController {
         try {
             ServiceError se = ValidationUtility.validateCartRequest(request);
             if (se != null) {
-                res.setStatusCode(400);
-                res.setStatusDescription("FAIL");
+                res.setStatusCode("1");
+                res.setStatusDescription("fail");
                 res.setError(se);
                 res.setItems(List.of());
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(res);
@@ -37,16 +37,16 @@ public class CartController {
             cartService.addItem(request);
             List<CartItem> items = cartService.getCartItems();
             if (items != null && !items.isEmpty()) {
-                res.setStatusCode(200);
-                res.setStatusDescription("SUCCESS");
+                res.setStatusCode("0");
+                res.setStatusDescription("success");
                 res.setItems(items);
             } else {
-                res.setStatusCode(500);
-                res.setStatusDescription("FAIL");
+                res.setStatusCode("1");
+                res.setStatusDescription("fail");
             }
         } catch (Exception ex) {
-            res.setStatusCode(500);
-            res.setStatusDescription("FAIL");
+            res.setStatusCode("1");
+            res.setStatusDescription("fail");
             res.setError(new ServiceError("HTTP_ERROR", ex.getMessage()));
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(res);
         }
@@ -60,16 +60,16 @@ public class CartController {
         try {
             List<CartItem> items = cartService.getCartItems();
             if (items != null && !items.isEmpty()) {
-                res.setStatusCode(200);
-                res.setStatusDescription("SUCCESS");
+                res.setStatusCode("0");
+                res.setStatusDescription("success");
                 res.setItems(items);
             } else {
-                res.setStatusCode(204);
-                res.setStatusDescription("EMPTY");
+                res.setStatusCode("2");
+                res.setStatusDescription("empty");
             }
         } catch (Exception ex) {
-            res.setStatusCode(500);
-            res.setStatusDescription("FAIL");
+            res.setStatusCode("1");
+            res.setStatusDescription("fail");
             res.setError(new ServiceError("HTTP_ERROR", ex.getMessage()));
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(res);
         }
