@@ -13,6 +13,7 @@
     </div>
     <div class="cart-footer">
       <div class="cart-total">Total: ${{ cartTotal | number:'1.2-2' }}</div>
+      <button *ngIf="cartItems.length > 0" class="clear-cart-btn" (click)="onClearCart()">Clear Cart</button>
     </div>
   </div>
 </div>

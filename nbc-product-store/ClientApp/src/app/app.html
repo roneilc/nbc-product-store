@@ -9,7 +9,8 @@
             [cartItems]="cartState.cartItems()"
             [cartCount]="cartState.cartCount()"
             [cartTotal]="cartState.cartTotal()"
-            (close)="toggleCartFlyout()">
+            (close)="toggleCartFlyout()"
+            (clearCart)="onClearCart()">
           </app-cart-flyout>
         </div>
         <div class="backend-toggle">

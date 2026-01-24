@@ -70,6 +70,10 @@ export class App implements OnInit, OnDestroy {
     }
   }
 
+  onClearCart() {
+    this.cartState.clearCart();
+  }
+
   setBackend(key: string) {
     try {
       setSelectedBackend(key);

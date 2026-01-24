@@ -14,8 +14,13 @@ export class CartFlyoutComponent {
   @Input() cartCount: number = 0;
   @Input() cartTotal: number = 0;
   @Output() close = new EventEmitter<void>();
+  @Output() clearCart = new EventEmitter<void>();
 
   onClose() {
     this.close.emit();
+  }
+
+  onClearCart() {
+    this.clearCart.emit();
   }
 }
