@@ -44,6 +44,7 @@
             "name": "Build and Run App",
             "configurations": [
                 ".NET Core Launch (full)",
+                "Java Launch",
                 "Chrome Launch"
             ],
             "console": "internalConsole"
