@@ -11,21 +11,52 @@ import { Product } from '../../models/product.model';
 })
 export class CarouselComponent implements OnInit, OnDestroy {
   @Input() products: Product[] = [];
+  @Input() rowCount = 2;
   @Output() addToCart = new EventEmitter<Product>();
 
   currentIndex = signal<number>(0);
   visibleCount = signal<number>(3);
+  itemsPerRow = computed(() => this.visibleCount());
+  totalVisible = computed(() => this.itemsPerRow() * this.rowCount);
+  
+  totalPages = computed(() => {
+    const n = this.products.length || 0;
+    const perPage = this.totalVisible();
+    return perPage > 0 ? Math.ceil(n / perPage) : 0;
+  });
+
+  currentPage = computed(() => {
+    const perPage = this.totalVisible();
+    return perPage > 0 ? Math.floor(this.currentIndex() / perPage) : 0;
+  });
+
+  getPages(): number[] {
+    return Array.from({ length: this.totalPages() }, (_, i) => i);
+  }
+  
   visibleProducts = computed(() => {
     const items = this.products || [];
     const n = items.length;
     if (n === 0) return [] as Product[];
-    const len = Math.min(this.visibleCount(), n);
+    const len = Math.min(this.totalVisible(), n);
     const res: Product[] = [];
     for (let i = 0; i < len; i++) {
       res.push(items[(this.currentIndex() + i) % n]);
     }
     return res;
   });
+
+  getRowProducts(rowIndex: number): Product[] {
+    const visible = this.visibleProducts();
+    const perRow = this.itemsPerRow();
+    const start = rowIndex * perRow;
+    const end = start + perRow;
+    return visible.slice(start, end);
+  }
+
+  getRows(): number[] {
+    return Array.from({ length: this.rowCount }, (_, i) => i);
+  }
 
   private _onResize = () => this.updateVisibleCount();
   private _dragActive = false;
@@ -75,10 +106,10 @@ export class CarouselComponent implements OnInit, OnDestroy {
       track.style.transform = `translateX(${dx}px)`;
     }
     if (dx <= -this._dragThreshold) {
-      this.next(this.visibleCount());
+      this.next();
       this._dragStartX = ev.clientX;
     } else if (dx >= this._dragThreshold) {
-      this.prev(this.visibleCount());
+      this.prev();
       this._dragStartX = ev.clientX;
     }
   }
@@ -99,17 +130,25 @@ export class CarouselComponent implements OnInit, OnDestroy {
     this.addToCart.emit(product);
   }
 
-  next(step = 1) {
+  next() {
     const n = this.products.length || 0;
     if (n === 0) return;
-    this.currentIndex.set((this.currentIndex() + step) % n);
+
+    this.currentIndex.set((this.currentIndex() + this.totalVisible()) % n);
   }
 
-  prev(step = 1) {
+  prev() {
     const n = this.products.length || 0;
     if (n === 0) return;
-    const idx = (this.currentIndex() - step) % n;
+    const idx = (this.currentIndex() - this.totalVisible()) % n;
     this.currentIndex.set((idx + n) % n);
+  }
+
+  selectPage(pageIndex: number) {
+    const n = this.products.length || 0;
+    if (n === 0) return;
+    const newIndex = pageIndex * this.totalVisible();
+    this.currentIndex.set(newIndex % n);
   }
 
   selectIndex(absIndex: number) {
