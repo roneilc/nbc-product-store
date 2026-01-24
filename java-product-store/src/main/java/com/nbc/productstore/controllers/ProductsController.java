@@ -1,8 +1,9 @@
 package com.nbc.productstore.controllers;
 
-import com.nbc.productstore.models.Product;
 import com.nbc.productstore.models.RetrieveProductsListResponse;
-import com.nbc.productstore.services.ProductsService;
+import com.nbc.productstore.models.product.Product;
+import com.nbc.productstore.services.productsservice.ProductsService;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -1,4 +1,4 @@
-package com.nbc.productstore.models;
+package com.nbc.productstore.models.product;
 
 public class Product {
     private int id;

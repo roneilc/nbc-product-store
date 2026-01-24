@@ -1,10 +1,10 @@
 package com.nbc.productstore.controllers;
 
-import com.nbc.productstore.models.CartItem;
-import com.nbc.productstore.models.CartRequest;
 import com.nbc.productstore.models.RetrieveCartResponse;
 import com.nbc.productstore.models.ServiceError;
-import com.nbc.productstore.services.CartService;
+import com.nbc.productstore.models.cart.CartItem;
+import com.nbc.productstore.models.cart.CartRequest;
+import com.nbc.productstore.services.cartservice.CartService;
 import com.nbc.productstore.utils.ValidationUtility;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

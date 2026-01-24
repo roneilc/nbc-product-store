@@ -1,7 +1,7 @@
 package com.nbc.productstore.utils;
 
-import com.nbc.productstore.models.CartRequest;
 import com.nbc.productstore.models.ServiceError;
+import com.nbc.productstore.models.cart.CartRequest;
 
 public class ValidationUtility {
     public static ServiceError validateCartRequest(CartRequest request) {

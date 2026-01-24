@@ -2,6 +2,8 @@ package com.nbc.productstore.models;
 
 import java.util.List;
 
+import com.nbc.productstore.models.product.Product;
+
 public class RetrieveProductsListResponse {
     private int statusCode;
     private String statusDescription;
