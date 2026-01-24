@@ -43,7 +43,8 @@ public class ProductsServiceImpl implements ProductsService {
                         String title = p.path("title").asText("");
                         String description = p.path("description").asText("");
                         double price = p.path("price").asDouble(0.0);
-                        list.add(new Product(id, title, description, price));
+                        String thumbnail = p.path("thumbnail").asText("");
+                        list.add(new Product(id, title, description, price, thumbnail));
                     }
                 }
             } else {

@@ -2,25 +2,29 @@ package com.nbc.productstore.models.product;
 
 public class Product {
     private int id;
-    private String name;
+    private String title;
     private String description;
     private double price;
+    private String thumbnail;
 
     public Product() {}
 
-    public Product(int id, String name, String description, double price) {
+    public Product(int id, String title, String description, double price, String thumbnail) {
         this.id = id;
-        this.name = name;
+        this.title = title;
         this.description = description;
         this.price = price;
+        this.thumbnail = thumbnail;
     }
 
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
+    public String getTitle() { return title; }
+    public void setTitle(String title) { this.title = title; }
     public String getDescription() { return description; }
     public void setDescription(String description) { this.description = description; }
     public double getPrice() { return price; }
     public void setPrice(double price) { this.price = price; }
+    public String getThumbnail() { return thumbnail; }
+    public void setThumbnail(String thumbnail) { this.thumbnail = thumbnail; }
 }

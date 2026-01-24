@@ -27,17 +27,17 @@ public class ProductsController {
         try {
             List<Product> products = productsService.getProducts();
             if (products != null && !products.isEmpty()) {
-                res.setStatusCode(200);
-                res.setStatusDescription("SUCCESS");
+                res.setStatusCode("0");
+                res.setStatusDescription("success");
                 res.setProducts(products);
             } else {
-                res.setStatusCode(500);
-                res.setStatusDescription("FAIL");
+                res.setStatusCode("1");
+                res.setStatusDescription("fail");
                 res.setProducts(List.of());
             }
         } catch (Exception ex) {
-            res.setStatusCode(500);
-            res.setStatusDescription("FAIL");
+            res.setStatusCode("1");
+            res.setStatusDescription("fail");
             res.setProducts(List.of());
         }
 
