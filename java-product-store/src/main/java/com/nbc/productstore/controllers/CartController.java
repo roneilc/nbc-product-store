@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/java/api/cart")
+@RequestMapping("/java/api/Cart")
 public class CartController {
     private final CartService cartService;
 
@@ -21,7 +21,7 @@ public class CartController {
         this.cartService = cartService;
     }
 
-    @PostMapping("/addItem")
+    @PostMapping("/AddItem")
     public ResponseEntity<RetrieveCartResponse> addItem(@RequestBody CartRequest request) {
         RetrieveCartResponse res = new RetrieveCartResponse();
         try {
@@ -54,7 +54,7 @@ public class CartController {
         return ResponseEntity.ok(res);
     }
 
-    @GetMapping("/getCart")
+    @GetMapping("/GetCart")
     public ResponseEntity<RetrieveCartResponse> getCart() {
         RetrieveCartResponse res = new RetrieveCartResponse();
         try {

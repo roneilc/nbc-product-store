@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/java/api/products")
+@RequestMapping("/java/api/Products")
 public class ProductsController {
     private final ProductsService productsService;
 
@@ -20,7 +20,7 @@ public class ProductsController {
         this.productsService = productsService;
     }
 
-    @GetMapping(value = "/retrieveProductsList", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/RetrieveProductsList", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<RetrieveProductsListResponse> retrieveProductsList() {
         RetrieveProductsListResponse res = new RetrieveProductsListResponse();
         try {
