@@ -71,7 +71,15 @@ This project currently uses .NET for the server and an Angular single page app f
 - **Middleware:**  `AuthorizationMiddleware` is used to check Authroization header
 - **Angular:** The `ClientApp` folder contains the Angular app that the user interacts with and makes backend API calls as needed
 
-Flow:
+User Flow:
+
+1. User lands on product page 
+2. User can drag item carousel or use pagination to navigate through items
+3. Selecting Buy on an item adds the item to the cart
+4. Selecting the Cart button opens the Cart Flyout displaying all items added to cart
+5. User can clear cart by selecting Clear button
+
+Logic Flow:
 
 1. Client sends an HTTP request to a controller API.
 2. The Middleware pipeline checks Authorization
@@ -85,5 +93,25 @@ For state management, this app uses Angular Signals with Observables being used 
 
 A 3rd party state management library seemed too excessive for a small app.
 
+## Considerations
+
+A tradeoff I had to make was less portable classes and methods in the Java project given the time constraints. The .NET is more akin to production code as its architecture is similar to existing apps I had previously worked on
+
+Given more time I would have focused on the following:
+- Single item removal from cart
+- A more consistent logging framework for both backends
+- Unit Test implementation
+- Animations
+- Negative test scenario handling
 
 ---
+
+## Screencaps
+
+**Product Item Page**
+![](images/productpage.png)
+
+
+**Cart Flyout**
+![](images/cart.png)
+
