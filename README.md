@@ -12,6 +12,9 @@ To run this project in VS Code,
 
 1. Open the Run and Debug view
 2. From the configuration dropdown select `Build and Run App`.
+
+![Run Configuration](images/run.png)
+
 3. Click the green arrow to start. This launch configuration will launch both angular and .NET backend
 
 ## Command Line
