@@ -11,6 +11,7 @@ import { CartRequest, RetrieveCartResponse } from '../models/cart.model';
 export class CartService {
   readonly ADD_ITEM = `/api/Cart/AddItem`;
   readonly GET_CART = `/api/Cart/GetCart`;
+  readonly CLEAR_CART = `/api/Cart/ClearCart`;
 
   private apiUrl = getApiUrl();
 
@@ -24,5 +25,10 @@ export class CartService {
   //Retrieve all current cart items
   getCart(): Observable<RetrieveCartResponse> {
     return this.http.get<RetrieveCartResponse>(`${this.apiUrl}${this.GET_CART}`);
+  }
+
+  //Clear all items from cart
+  clearCart(): Observable<RetrieveCartResponse> {
+    return this.http.delete<RetrieveCartResponse>(`${this.apiUrl}${this.CLEAR_CART}`);
   }
 }

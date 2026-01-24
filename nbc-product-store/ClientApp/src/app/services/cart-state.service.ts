@@ -47,6 +47,18 @@ export class CartStateService {
     });
   }
 
+  clearCart() {
+    this._cartService.clearCart().subscribe({
+      next: (res) => {
+        this.cartItems.set([]);
+        this.cartCount.set(0);
+      },
+      error: (err) => {
+        console.error('Error clearing cart:', err);
+      }
+    });
+  }
+
   cartItemSubtotal(item: CartItem): number {
     return (item.price || 0) * (item.quantity || 0);
   }

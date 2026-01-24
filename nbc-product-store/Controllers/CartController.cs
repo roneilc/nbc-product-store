@@ -97,4 +97,27 @@ public class CartController : Controller
         return Json(res);
     }
 
+    [HttpDelete]
+    public JsonResult ClearCart()
+    {
+        var res = new RetrieveCartResponse();
+        try
+        {
+            _cartService.ClearCart();
+            res.StatusCode = AppConstants.RESPONSE_STATUS_CODE_SUCCESS;
+            res.StatusDescription = AppConstants.RESPONSE_STATUS_DESCRIPTION_SUCCESS;
+            res.Items = new List<CartItem>();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Exception: {ex.Message}");
+            Response.StatusCode = StatusCodes.Status500InternalServerError;
+            res.StatusCode = AppConstants.RESPONSE_STATUS_CODE_FAIL;
+            res.StatusDescription = AppConstants.RESPONSE_STATUS_DESCRIPTION_FAIL;
+            res.Error = new ServiceError(AppConstants.HTTP_ERROR, ex.Message);
+        }
+
+        return Json(res);
+    }
+
 }
